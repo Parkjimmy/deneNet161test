@@ -45,6 +45,27 @@ Baseline 2D CNN(49.29%) 대비 깊은 인공신경망 적용 시 약 +29.96%p의
 ## 3. Confusion Matrix 분석
 
 ### Model 1: Baseline 2D CNN
+![Baseline 2D CNN CM](cm_cnn.png)
+
+#### 분석
+* **가장 잘 분류된 클래스**: 클래스 A
+...
+
+### Model 2: ResNet18
+![ResNet18 CM](cm_resnet18.png)
+
+#### 분석
+* **가장 잘 분류된 클래스**: 클래스 A, B, E
+...
+
+### Model 3: DenseNet161
+![DenseNet161 CM](cm_densenet161.png)
+
+#### 분석
+* **가장 잘 분류된 클래스**: 클래스 A, B, E
+...
+
+### Model 1: Baseline 2D CNN
 
 #### 분석
 
