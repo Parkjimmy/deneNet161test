@@ -1,9 +1,9 @@
-# AI 모델 재현 및 성능 비교 과제
+# DenseNet161 AI모델 재현 및 타 AI모델 성능 비교 과제
 
 ## 1. 코드 설명
 본 과제에서는 2채널 손바닥 표면 근전도(palm-sEMG) 데이터를 활용하여 사용자 식별(Identification)을 수행하는 AI 모델 파이프라인을 구현하고, Baseline 2D CNN, ResNet18, DenseNet161 모델 간 성능 비교 실험을 진행함.
 
-- **사용한 데이터 및 전처리 방법**: `palm-sEMG-doorknob-filtered` 데이터셋(5개 클래스 A~E, 사용자/시행별 50개 파일, 총 250개 파일)을 사용하였습니다. 60Hz Notch Filter 및 20~495Hz Bandpass Filter로 노이즈를 제거한 후, 300ms 윈도우 크기(50% Overlap)의 슬라이딩 윈도우를 적용하였으며 Morlet Wavelet 기반 CWT 변환을 통해 (3, 32, 300) 크기의 시간-주파수 스펙트로그램 이미지를 생성함.
+- **사용한 데이터 및 전처리 방법**: `palm-sEMG-doorknob-filtered` 데이터셋(5개 클래스 A~E, 사용자/시행별 50개 파일, 총 250개 파일)을 사용했다. 60Hz Notch Filter 및 20~495Hz Bandpass Filter로 노이즈를 제거한 후, 300ms 윈도우 크기(50% Overlap)의 슬라이딩 윈도우를 적용하였으며 Morlet Wavelet 기반 CWT 변환을 통해 (3, 32, 300) 크기의 시간-주파수 스펙트로그램 이미지를 생성함.
 - **사용한 AI/ML 모델**: Baseline 2D CNN, ResNet18, DenseNet161 총 3개 모델을 구현하여 사용함.
 - **학습 및 테스트 방법**: 데이터 누수 방지를 위해 Trial 단위 Stratified 5-Fold Cross Validation을 수행하였으며, 무작위성을 배제하고 결과의 통계적 신뢰성을 확보하기 위해 전체 과정을 3회 반복 실행하여 평균 수치를 산출함. (Batch size=16, Epochs=30, Adam optimizer, lr=0.001)
 
