@@ -1,9 +1,13 @@
+
+---
+
+```markdown
 # DenseNet161 AI모델 재현 및 타 AI모델 성능 비교 과제
 
 ## 1. 코드 설명
 본 과제에서는 2채널 손바닥 표면 근전도(palm-sEMG) 데이터를 활용하여 사용자 식별(Identification)을 수행하는 AI 모델 파이프라인을 구현하고, Baseline 2D CNN, ResNet18, DenseNet161 모델 간 성능 비교 실험을 진행함.
 
-- **사용한 데이터 및 전처리 방법**: `palm-sEMG-doorknob-filtered` 데이터셋(5개 클래스 A~E, 사용자/시행별 50개 파일, 총 250개 파일)을 사용했다. 60Hz Notch Filter 및 20~495Hz Bandpass Filter로 노이즈를 제거한 후, 300ms 윈도우 크기(50% Overlap)의 슬라이딩 윈도우를 적용하였으며 Morlet Wavelet 기반 CWT 변환을 통해 (3, 32, 300) 크기의 시간-주파수 스펙트로그램 이미지를 생성함.
+- **사용한 데이터 및 전처리 방법**: `palm-sEMG-doorknob-filtered` 데이터셋(5개 클래스 A~E, 사용자/시행별 50개 파일, 총 250개 파일)을 사용함. 60Hz Notch Filter 및 20~495Hz Bandpass Filter로 노이즈를 제거한 후, 300ms 윈도우 크기(50% Overlap)의 슬라이딩 윈도우를 적용하였으며 Morlet Wavelet 기반 CWT 변환을 통해 (3, 32, 300) 크기의 시간-주파수 스펙트로그램 이미지를 생성함.
 - **사용한 AI/ML 모델**: Baseline 2D CNN, ResNet18, DenseNet161 총 3개 모델을 구현하여 사용함.
 - **학습 및 테스트 방법**: 데이터 누수 방지를 위해 Trial 단위 Stratified 5-Fold Cross Validation을 수행하였으며, 무작위성을 배제하고 결과의 통계적 신뢰성을 확보하기 위해 전체 과정을 3회 반복 실행하여 평균 수치를 산출함. (Batch size=16, Epochs=30, Adam optimizer, lr=0.001)
 
@@ -76,7 +80,12 @@ Baseline 2D CNN(49.29%) 대비 깊은 인공신경망 적용 시 약 +29.96%p의
 * **가장 성능이 낮은 모델**: Baseline 2D CNN (Accuracy: 49.95%, F1-score: 49.29%)
 * **주요 오분류 클래스**: 클래스 C 및 클래스 D
 * **전체적인 실험 결과 및 느낀 점**:
-
 1. 1차원 표면 근전도(sEMG) 신호를 Morlet CWT 변환하여 2차원 시간-주파수 스펙트로그램 이미지로 변환함으로써 딥러닝 기반 이미지 분류 아키텍처를 효과적으로 적용할 수 있음을 확인.
 2. 단순 Conv 구조 대비 ResNet 및 DenseNet과 같이 지름길 연결(Shortcut/Dense Connection)이 포함된 최신 아키텍처가 시계열 이미지 특징을 추출하는 데 뛰어난 성능을 발휘함을 검증.
 3. 총 3회의 Stratified 5-Fold 교차 검증 반복 실험을 수행하여 모델 학습의 안정성과 통계적 신뢰성을 확보할 수 있었다.
+
+
+
+```
+
+```
